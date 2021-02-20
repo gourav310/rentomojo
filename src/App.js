@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useHistory} from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import "./style.css";
 import UserPosts from "./userPosts";
 import { Switch, Route } from "react-router-dom";
@@ -10,7 +10,7 @@ import Table from "./table.js";
 import PostDetails from "./postDetails.js";
 export default function App() {
   //button for dark mode
-  const history =useHistory();
+  const history = useHistory();
   const [mode, setMode] = useState("light");
   const [isDarkMode, setButton] = useState(false);
   const setIsDarkMode = () => {
@@ -20,11 +20,11 @@ export default function App() {
     } else [setMode("light"), setButton(false)];
   };
   return (
-    //table for 
+    //table for
     <ThemeProvider theme={{ mode: mode }}>
       <GlobalStyle />
       <div className="navbar">
-        <span className="heading" onClick={()=>history.push("/")}>
+        <span className="heading" onClick={() => history.push("/")}>
           <h1>Rentomojo</h1>
           <p>Blog Posts</p>
         </span>
@@ -37,13 +37,13 @@ export default function App() {
           <div>Switch Modes</div>
         </div>
       </div>
-       { /* Switch for paths */}
+      {/* Switch for paths */}
       <Switch>
-      { /* post details */}
+        {/* post details */}
         <Route path="/postDetails" render={() => <PostDetails mode={mode} />} />
-        { /* all post by user */}
+        {/* all post by user */}
         <Route path="/posts/:name" render={() => <UserPosts mode={mode} />} />
-        { /* home page */}
+        {/* home page */}
         <Route path="/" render={() => <Table mode={mode} />} />
       </Switch>
     </ThemeProvider>
